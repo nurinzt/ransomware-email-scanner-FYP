@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3, 
+  "name": "Ransomware Email Scanner FYP",
+  "version": "1.0",
+  "description": "Scans email content and attachments for ransomware and phishing threats.",
+  "permissions": ["storage", "activeTab", "scripting", "https://*/*","http://*/*"],
+  "host_permissions": [
+    "https://mail.google.com/*",
+    "https://*.googleusercontent.com/*",
+    "https://outlook.office.com/*",
+    "https://*.office.net/*",
+    "https://www.virustotal.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://mail.google.com/*", "https://outlook.office.com/*"],
+      "js": ["utils.js","contentPopup.js"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "48": "icons/email-scanner-logo.png"
+    }
+  }
+}
