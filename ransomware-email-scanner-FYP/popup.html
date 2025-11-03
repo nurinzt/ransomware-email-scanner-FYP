@@ -1,11 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Email Scanner</title>
+    <meta charset="utf-8" />
+    <title>Email Scanner - Scan Attachment</title>
     <link rel="stylesheet" href="popup.css">
+    <style>
+      /* small, popup-specific styles (won't interfere with your content script overlay) */
+      body { font-family: Arial; width: 340px; padding: 12px; box-sizing: border-box; }
+      h3 { margin: 0 0 8px 0; font-size: 16px; }
+      p { margin: 0 0 12px 0; font-size: 13px; color: #333; }
+      .btn { padding:8px 12px; margin-top:8px; cursor: pointer; }
+      #status { margin-top: 10px; font-size: 12px; color: #444; white-space: pre-wrap; }
+      #result { margin-top: 8px; font-size: 12px; color: #111; white-space: pre-wrap; max-height: 240px; overflow: auto; background: #f8f8f8; padding: 8px; border-radius: 4px; border: 1px solid #eee; }
+      input[type="file"] { width: 100%; }
+    </style>
 </head>
 <body>
     <h3>Ransomware Email Scanner</h3>
-    <p>This extension works automatically when you open an email.</p>
+    <p>Select a downloaded attachment (from your email) to check it on VirusTotal.</p>
+
+    <input id="fileInput" type="file" />
+    <br />
+    <button id="scanBtn" class="btn">Scan selected file</button>
+
+    <div id="status"></div>
+    <div id="result"></div>
+
+    <!-- popup.js must exist in your extension folder and implement the logic to compute hash / call background -->
+    <script src="popup.js"></script>
 </body>
 </html>
